@@ -4,7 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth");
 
-dotenv.config();
+dotenv.config({ path: ".env.local" });
 const app = express();
 
 app.use(cors());
