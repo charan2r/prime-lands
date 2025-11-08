@@ -9,6 +9,12 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, required: true },
   address: { type: String },
   dateOfBirth: { type: Date },
+  officeId: { type: mongoose.Schema.Types.ObjectId, ref: "Office" },
+  preferences: Object,
+  isActive: { type: Boolean, default: true },
+  isVerified: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -1,16 +1,18 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: ".env.local" });
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const dotenv = require("dotenv");
-const authRoutes = require("./routes/auth");
-
-dotenv.config({ path: ".env.local" });
+const otpRoutes = require("./routes/otp.route");
+const userRoutes = require("./routes/user.route");
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/auth", authRoutes);
+app.use("/api/auth", userRoutes);
+app.use("/api/otp", otpRoutes);
 
 // Connect to MongoDB
 mongoose
