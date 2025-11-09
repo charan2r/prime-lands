@@ -106,7 +106,7 @@ exports.addproperty = async (req, res) => {
       description,
       price,
       propertyType,
-      status,
+      status: status || "Pending",
       features: parsedFeatures || {},
       location: parsedLocation || {},
       geoLocation: parsedGeoLocation,
@@ -127,6 +127,31 @@ exports.addproperty = async (req, res) => {
       message: "Error creating property",
       error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
+  }
+};
+
+// Approve property
+exports.approveProperty = async (req, res) => {
+  try {
+    const { propertyId } = req.params;
+    const adminId = req.user.id;
+
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(400).json({ message: "Property not found" });
+    }
+
+    property.approvedBy = adminId;
+    property.status = "Available";
+    property.updatedAt = Date.now();
+
+    await property.save();
+    res
+      .status(200)
+      .json({ message: "Property approved successfully", property });
+  } catch (error) {
+    console.error("Error approving property:", error);
+    res.status(500).json({ message: "Error approving property" });
   }
 };
 

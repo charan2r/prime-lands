@@ -12,7 +12,7 @@ import {
   Calendar,
 } from "lucide-react";
 
-const RealEstateRegistration = () => {
+const Registration = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -565,4 +565,4 @@ const RealEstateRegistration = () => {
   );
 };
 
-export default RealEstateRegistration;
+export default Registration;

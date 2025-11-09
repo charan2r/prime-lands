@@ -3,15 +3,25 @@ const mongoose = require("mongoose");
 const officeSchema = new mongoose.Schema({
   name: { type: String, required: true },
   location: {
-    address: String,
-    city: String,
+    address: { type: String, required: true },
+    city: { type: String, required: true },
     state: String,
-    country: String,
+    country: { type: String, required: true },
+  },
+
+  geoLocation: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: false,
+    },
     coordinates: {
-      type: { type: String, enum: ["Point"], default: "Point" },
-      coordinates: { type: [Number], index: "2dsphere" },
+      type: [Number],
+      required: false,
+      index: "2dsphere",
     },
   },
+
   brokerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

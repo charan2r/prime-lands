@@ -6,6 +6,7 @@ const {
   getPropertyById,
   updateProperty,
   deleteProperty,
+  approveProperty,
 } = require("../controllers/property/property.controller");
 const upload = require("../middleware/upload");
 const { body } = require("express-validator");
@@ -34,5 +35,6 @@ router.get("/get-all", getAllProperties);
 router.get("/:id", getPropertyById);
 router.put("/:id", updateProperty);
 router.delete("/:id", deleteProperty);
+router.post("approve/:id", approveProperty);
 
 module.exports = router;

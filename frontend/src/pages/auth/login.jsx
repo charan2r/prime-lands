@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Building2, Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 
-const RealEstateLogin = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -235,4 +235,4 @@ const RealEstateLogin = () => {
   );
 };
 
-export default RealEstateLogin;
+export default Login;
