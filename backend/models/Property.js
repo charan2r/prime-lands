@@ -11,7 +11,7 @@ const propertySchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Available", "Sold", "Rented"],
+    enum: ["Available", "Sold", "Rented", "Not Available"],
     default: "Available",
   },
 
@@ -24,13 +24,22 @@ const propertySchema = new mongoose.Schema({
   },
 
   location: {
-    address: String,
-    city: String,
+    address: { type: String, required: true },
+    city: { type: String, required: true },
     state: String,
-    country: String,
+    country: { type: String, required: true },
+  },
+
+  geoLocation: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: false,
+    },
     coordinates: {
-      type: { type: String, enum: ["Point"], default: "Point" },
-      coordinates: { type: [Number], index: "2dsphere" },
+      type: [Number],
+      required: false,
+      index: "2dsphere",
     },
   },
 
@@ -50,6 +59,6 @@ const propertySchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-propertySchema.index({ location: "2dsphere" });
+propertySchema.index({ geoLocation: "2dsphere" });
 
 module.exports = mongoose.model("Property", propertySchema);
