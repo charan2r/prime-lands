@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const officeSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  code: { type: String, unique: true },
   location: {
     address: { type: String, required: true },
     city: { type: String, required: true },
@@ -21,15 +22,24 @@ const officeSchema = new mongoose.Schema({
       index: "2dsphere",
     },
   },
+  contact: {
+    email: String,
+    phone: String,
+  },
 
   brokerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: false,
   },
   agents: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+
+  establishedDate: Date,
+  isActive: { type: Boolean, default: true },
+  logoUrl: String,
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
+officeSchema.index({ geoLocation: "2dsphere" });
 module.exports = mongoose.model("Office", officeSchema);

@@ -15,7 +15,7 @@ import Header from "./components/header.jsx";
 import Footer from "./components/footer.jsx";
 import Login from "./pages/auth/login.jsx";
 import Registration from "./pages/auth/registration.jsx";
-import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminDashboard from "./pages/admin/adminDashboard.jsx";
 import AgentDashboard from "./pages/agent/agentDashboard.jsx";
 import BrokerDashboard from "./pages/broker/brokerDashboard.jsx";
 

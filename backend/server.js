@@ -7,6 +7,7 @@ const cors = require("cors");
 const otpRoutes = require("./routes/otp.route");
 const userRoutes = require("./routes/user.route");
 const propertyRoutes = require("./routes/property.route");
+const officeRoutes = require("./routes/office.route");
 const app = express();
 
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use("/api/auth", userRoutes);
 app.use("/api/otp", otpRoutes);
 app.use("/api/property", propertyRoutes);
+app.use("/api/office", officeRoutes);
 
 // Connect to MongoDB
 mongoose
